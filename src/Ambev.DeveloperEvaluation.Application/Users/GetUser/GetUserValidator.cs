@@ -1,0 +1,20 @@
+using FluentValidation;
+
+namespace Ambev.DeveloperEvaluation.Application.Users.GetUser;
+
+/// <summary>
+/// Validator for GetUserCommand
+/// </summary>
+public class GetUserValidator : AbstractValidator<GetUserCommand>
+{
+    /// <summary>
+    /// Initializes validation rules for GetUserCommand
+    /// </summary>
+    public GetUserValidator()
+    {
+        RuleFor(x => x.Id)
+            .NotEmpty()
+            .NotEqual(Guid.Empty)
+            .WithMessage("User ID must be a valid GUID.");
+    }
+}
