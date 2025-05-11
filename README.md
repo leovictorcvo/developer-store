@@ -36,7 +36,7 @@ Nessa [página](./doc/Getting-Started.md) você encontrará as informações nec
 
 - Todos os endpoints necessitam autorização, com excessão dos endpoints de autenticação e de criação de usuário.
 
-- Os endpoints de produtos só poderão ser por usuários que pertencam a função _Admin_ ou _Manager_.
+- Os endpoints de produtos só poderão ser alterados por usuários que pertencam a função _Admin_ ou _Manager_. Os usuários da função _Customer_ só poderão realizar consultas.
 
 - Usuários com a função _Customer_ só poderão consultar e alterar seus registros.
 
@@ -83,6 +83,12 @@ Nessa [página](./doc/Getting-Started.md) você encontrará as informações nec
     GET /products?category=men's clothing&_minPrice=50
     GET /products?title=Fjallraven*&category=men's clothing&_minPrice=100
     ```
+
+> Na versão atual não é possível filtrar por propriedades de entidades filhas.
+>
+> Exemplo:
+>
+> GET /users?name.firstname=\*in
 
 ### Endpoints Principais
 

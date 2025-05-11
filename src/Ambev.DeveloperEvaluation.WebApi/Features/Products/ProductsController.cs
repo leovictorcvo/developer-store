@@ -24,7 +24,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "Admin,Manager")]
+[Authorize]
 [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status401Unauthorized)]
 public class ProductsController : BaseController
 {
@@ -51,6 +51,7 @@ public class ProductsController : BaseController
     [HttpPost]
     [ProducesResponseType(typeof(ApiResponseWithData<ProductResponse>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
     {
         var validator = new CreateProductRequestValidator();
@@ -80,6 +81,7 @@ public class ProductsController : BaseController
     [HttpPut("{id}")]
     [ProducesResponseType(typeof(ApiResponseWithData<ProductResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<IActionResult> UpdateProduct([FromRoute] Guid id, [FromBody] UpdateProductRequest request, CancellationToken cancellationToken)
     {
         var validator = new UpdateProductRequestValidator();
@@ -112,6 +114,7 @@ public class ProductsController : BaseController
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<IActionResult> DeleteProduct([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         var command = new DeleteProductCommand(id);

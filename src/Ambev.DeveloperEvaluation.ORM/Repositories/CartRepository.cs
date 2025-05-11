@@ -37,7 +37,7 @@ public class CartRepository : ICartRepository
     public async Task<Cart> CreateAsync(Cart cart, Guid requestedBy, UserRole applicantRole, CancellationToken cancellationToken = default)
     {
         if (applicantRole == UserRole.Customer && cart.UserId != requestedBy)
-            throw new UnauthorizedAccessException("You can manage only your carts.");
+            throw new ForbiddenAccessException("You can manage only your carts.");
 
         await _context.Carts.AddAsync(cart, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
@@ -65,7 +65,7 @@ public class CartRepository : ICartRepository
             throw new ResourceNotFoundException("Cart not found", $"Cart with ID '{id}' not found");
 
         if (applicantRole == UserRole.Customer && cart.UserId != requestedBy)
-            throw new UnauthorizedAccessException("You can manage only your carts.");
+            throw new ForbiddenAccessException("You can manage only your carts.");
 
         return cart;
     }

@@ -21,7 +21,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Users;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "Admin,Manager")]
+[Authorize]
 [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status401Unauthorized)]
 public class UsersController : BaseController
 {

@@ -52,7 +52,7 @@ public class UserRepository : IUserRepository
     public async Task<User> GetByIdAsync(Guid id, bool asNoTracking, Guid requestedBy, UserRole applicantRole, CancellationToken cancellationToken = default)
     {
         if (applicantRole == UserRole.Customer && id != requestedBy)
-            throw new UnauthorizedAccessException("You can manage only your carts.");
+            throw new ForbiddenAccessException("You can manage only your data.");
 
         var query = _context.Users.AsQueryable();
         if (asNoTracking)
