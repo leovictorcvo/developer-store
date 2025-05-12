@@ -4,7 +4,7 @@
 
 ### /api/products
 
-Esse endpoint é o responsável por consultar e gerenciar os produtos cadastrados. O usuário precisar estar autenticado para poder executar as operações e só será permitido o acesso aos usuários com a Role _Admin_ ou _Manager_.
+Esse endpoint é o responsável por consultar e gerenciar os produtos cadastrados. As operações de cadastrar, alterar e excluir serão exclusivas para usuários com a função _Admin_ ou _Manager_. Os usuários com função _Customer_ só poderão consultar os dados.
 
 - **POST** _/api/products_ - Cria um novo produto
 
